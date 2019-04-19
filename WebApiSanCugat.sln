@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28306.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiSanCugat", "WebApiSanCugat\WebApiSanCugat.csproj", "{332EA66F-C3FC-467A-B713-3EB5DF1BEA2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{332EA66F-C3FC-467A-B713-3EB5DF1BEA2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{332EA66F-C3FC-467A-B713-3EB5DF1BEA2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{332EA66F-C3FC-467A-B713-3EB5DF1BEA2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{332EA66F-C3FC-467A-B713-3EB5DF1BEA2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8E10149-583B-4D9F-8383-811E4E63FB9A}
+	EndGlobalSection
+EndGlobal
