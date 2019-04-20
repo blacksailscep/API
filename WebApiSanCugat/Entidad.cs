@@ -25,7 +25,7 @@ namespace WebApiSanCugat
         public string nombre { get; set; }
         public string correo { get; set; }
         public string contrasenya { get; set; }
-        public int temporada { get; set; }
+        public Nullable<int> temporada { get; set; }
         public string direccion { get; set; }
         public string nif { get; set; }
         public string foto { get; set; }
