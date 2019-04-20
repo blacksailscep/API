@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -19,23 +20,24 @@ namespace WebApiSanCugat.Controllers
         private EntiEspaiEntities db = new EntiEspaiEntities();
 
         [HttpGet]
-        [Route("api/Entidads/nombre/{nombre}")]
-        public IHttpActionResult GetEntidadByNombre(String nombre)
+        [Route("api/Entidads/nombre/{nombre}/password/{password}")]
+        public IHttpActionResult GetEntidadByNombreAndPassword(String nombre,String password)
         {
             db.Configuration.LazyLoadingEnabled = false;
             //IHttpActionResult result;
 
-            List<Entidad> _admins = (
+            Entidad entidad = (
                                 from t in db.Entidad
-                                where t.nombre.Contains(nombre)
-                                select t).ToList();
+                                where t.nombre.Equals(nombre) && t.contrasenya.Equals(password)
+                                select t).FirstOrDefault();
 
 
-            return Ok(_admins);
+            return Ok(entidad);
         }
         // GET: api/Entidads
         public IQueryable<Entidad> GetEntidad()
         {
+            db.Configuration.LazyLoadingEnabled = false;
             return db.Entidad;
         }
 
@@ -67,6 +69,7 @@ namespace WebApiSanCugat.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutEntidad(int id, Entidad entidad)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -110,6 +113,8 @@ namespace WebApiSanCugat.Controllers
         [ResponseType(typeof(Entidad))]
         public IHttpActionResult PostEntidad(Entidad entidad)
         {
+            db.Configuration.LazyLoadingEnabled = false;
+
             string mensaje = "";
 
             if (!ModelState.IsValid)
@@ -127,6 +132,11 @@ namespace WebApiSanCugat.Controllers
                 SqlException sqlex = (SqlException)ex.InnerException.InnerException;
                 mensaje = Utilidad.MensajeError(sqlex);
                 return BadRequest(mensaje);
+            }
+            catch (DbEntityValidationException e)
+            {
+                Console.WriteLine(e.ToString());
+                
             }
 
 
