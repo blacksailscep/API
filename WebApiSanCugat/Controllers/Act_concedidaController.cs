@@ -15,51 +15,34 @@ using WebApiSanCugat.Utilidades;
 
 namespace WebApiSanCugat.Controllers
 {
-    public class Act_demandadasController : ApiController
+    public class Act_concedidaController : ApiController
     {
         private EntiEspaiEntities db = new EntiEspaiEntities();
 
-
-        [HttpGet]
-        [Route("api/Act_demandadas/asignada/{nombre}")]
-        public IHttpActionResult GetActividadByAsignada(String asignada)
+        // GET: api/Act_concedida
+        public IQueryable<Act_concedida> GetAct_concedida()
         {
             db.Configuration.LazyLoadingEnabled = false;
-            //IHttpActionResult result;
-
-            Act_demandadas _act = (
-                                from a in db.Act_demandadas
-                                where a.nombre.Equals(asignada)
-                                select a).FirstOrDefault();
-
-
-            return Ok(_act);
+            return db.Act_concedida;
         }
 
-
-        // GET: api/Act_demandadas
-        public IQueryable<Act_demandadas> GetAct_demandadas()
+        // GET: api/Act_concedida/5
+        [ResponseType(typeof(Act_concedida))]
+        public IHttpActionResult GetAct_concedida(int id)
         {
             db.Configuration.LazyLoadingEnabled = false;
-            return db.Act_demandadas;
-        }
-
-        // GET: api/Act_demandadas/5
-        [ResponseType(typeof(Act_demandadas))]
-        public IHttpActionResult GetAct_demandadas(int id)
-        {
-            Act_demandadas act_demandadas = db.Act_demandadas.Find(id);
-            if (act_demandadas == null)
+            Act_concedida act_concedida = db.Act_concedida.Find(id);
+            if (act_concedida == null)
             {
                 return NotFound();
             }
 
-            return Ok(act_demandadas);
+            return Ok(act_concedida);
         }
 
-        // PUT: api/Act_demandadas/5
+        // PUT: api/Act_concedida/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAct_demandadas(int id, Act_demandadas act_demandadas)
+        public IHttpActionResult PutAct_concedida(int id, Act_concedida act_concedida)
         {
             String mensaje = "";
             if (!ModelState.IsValid)
@@ -67,20 +50,20 @@ namespace WebApiSanCugat.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != act_demandadas.id)
+            if (id != act_concedida.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(act_demandadas).State = EntityState.Modified;
+            db.Entry(act_concedida).State = EntityState.Modified;
 
             try
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
-                if (!Act_demandadasExists(id))
+                if (!Act_concedidaExists(id))
                 {
                     return NotFound();
                 }
@@ -102,9 +85,9 @@ namespace WebApiSanCugat.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Act_demandadas
-        [ResponseType(typeof(Act_demandadas))]
-        public IHttpActionResult PostAct_demandadas(Act_demandadas act_demandadas)
+        // POST: api/Act_concedida
+        [ResponseType(typeof(Act_concedida))]
+        public IHttpActionResult PostAct_concedida(Act_concedida act_concedida)
         {
             String mensaje = "";
             if (!ModelState.IsValid)
@@ -112,8 +95,7 @@ namespace WebApiSanCugat.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Act_demandadas.Add(act_demandadas);
-
+            db.Act_concedida.Add(act_concedida);
             try
             {
                 db.SaveChanges();
@@ -130,21 +112,21 @@ namespace WebApiSanCugat.Controllers
 
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = act_demandadas.id }, act_demandadas);
+            return CreatedAtRoute("DefaultApi", new { id = act_concedida.id }, act_concedida);
         }
 
-        // DELETE: api/Act_demandadas/5
-        [ResponseType(typeof(Act_demandadas))]
-        public IHttpActionResult DeleteAct_demandadas(int id)
+        // DELETE: api/Act_concedida/5
+        [ResponseType(typeof(Act_concedida))]
+        public IHttpActionResult DeleteAct_concedida(int id)
         {
             String mensaje = "";
-            Act_demandadas act_demandadas = db.Act_demandadas.Find(id);
-            if (act_demandadas == null)
+            Act_concedida act_concedida = db.Act_concedida.Find(id);
+            if (act_concedida == null)
             {
                 return NotFound();
             }
 
-            db.Act_demandadas.Remove(act_demandadas);
+            db.Act_concedida.Remove(act_concedida);
             try
             {
                 db.SaveChanges();
@@ -156,7 +138,7 @@ namespace WebApiSanCugat.Controllers
                 return BadRequest(mensaje);
             }
 
-            return Ok(act_demandadas);
+            return Ok(act_concedida);
         }
 
         protected override void Dispose(bool disposing)
@@ -168,9 +150,9 @@ namespace WebApiSanCugat.Controllers
             base.Dispose(disposing);
         }
 
-        private bool Act_demandadasExists(int id)
+        private bool Act_concedidaExists(int id)
         {
-            return db.Act_demandadas.Count(e => e.id == id) > 0;
+            return db.Act_concedida.Count(e => e.id == id) > 0;
         }
     }
 }

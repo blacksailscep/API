@@ -185,6 +185,7 @@
     <Compile Include="Competicion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Act_concedidaController.cs" />
     <Compile Include="Controllers\Act_demandadasController.cs" />
     <Compile Include="Controllers\EntidadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
