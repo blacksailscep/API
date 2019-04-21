@@ -61,7 +61,7 @@ namespace WebApiSanCugat.Controllers
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!Act_concedidaExists(id))
                 {
