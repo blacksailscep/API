@@ -188,6 +188,8 @@
     <Compile Include="Controllers\Categoria_edadController.cs" />
     <Compile Include="Controllers\CompeticionsController.cs" />
     <Compile Include="Controllers\DeportesController.cs" />
+    <Compile Include="Controllers\Act_concedidaController.cs" />
+    <Compile Include="Controllers\Act_demandadasController.cs" />
     <Compile Include="Controllers\EntidadsController.cs" />
     <Compile Include="Controllers\EquipoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
