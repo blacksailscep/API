@@ -21,18 +21,26 @@ namespace WebApiSanCugat.Controllers
 
         [HttpGet]
         [Route("api/Entidads/nombre/{nombre}/password/{password}")]
-        public IHttpActionResult GetEntidadByNombreAndPassword(String nombre,String password)
+        public IHttpActionResult GetEntidadByNombreAndPassword(String nombre, String password)
         {
             db.Configuration.LazyLoadingEnabled = false;
-            //IHttpActionResult result;
+            IHttpActionResult result;
 
             Entidad entidad = (
                                 from t in db.Entidad
                                 where t.nombre.Equals(nombre) && t.contrasenya.Equals(password)
                                 select t).FirstOrDefault();
+            if (entidad == null)
+            {
+                result = NotFound();
+            }
+            else
+            {
+                result = Ok(entidad);
+            }
 
 
-            return Ok(entidad);
+            return result;
         }
         // GET: api/Entidads
         public IQueryable<Entidad> GetEntidad()
@@ -51,8 +59,8 @@ namespace WebApiSanCugat.Controllers
             IHttpActionResult result;
 
             Entidad admin = (from a in db.Entidad
-                           where a.id == id
-                           select a).FirstOrDefault();
+                             where a.id == id
+                             select a).FirstOrDefault();
             if (admin == null)
             {
                 result = NotFound();
@@ -136,7 +144,7 @@ namespace WebApiSanCugat.Controllers
             catch (DbEntityValidationException e)
             {
                 Console.WriteLine(e.ToString());
-                
+
             }
 
 
